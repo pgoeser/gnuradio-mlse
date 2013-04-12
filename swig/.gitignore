@@ -1,0 +1,13 @@
+/.deps
+/.libs
+/Makefile.in
+/Makefile
+/mlse_swig.cc
+/mlse_swig.py
+/mlse_swig.pyc
+/gnuradio
+/guile
+/python
+/_mlse_swig.la
+/_mlse_swig_la-mlse_swig.lo
+run_guile_tests

@@ -1,0 +1,12 @@
+/Makefile
+/Makefile.in
+/.deps
+/.libs
+/*.la
+/*.lo
+/*.pyc
+/*.pyo
+/run_tests
+/run_testapp
+/testapp_errors
+/testapp_exitcode

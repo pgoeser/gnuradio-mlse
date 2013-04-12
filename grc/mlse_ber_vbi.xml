@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<block>
+    <name>BER calculation</name>
+    <key>mlse_ber_vbi</key>
+        <category>Error Correction</category>
+    <import>import mlse_swig as mlse</import>
+    <make>mlse.ber_vbi($length)</make>
+    <param>
+        <name>Length</name>
+        <key>length</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <sink>
+        <name>data</name>
+        <type>byte</type>
+        <vlen>$length</vlen>
+    </sink>
+    <sink>
+        <name>orig data</name>
+        <type>byte</type>
+        <vlen>$length</vlen>
+    </sink>
+    <source>
+        <name>bit errors</name>
+        <type>int</type>
+    </source>
+</block>
+

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<block>
+    <name>Vector Concatenation</name>
+    <key>mlse_vector_concat_vv</key>
+        <category>Stream Conversions</category>
+    <import>import mlse</import>
+    <make>mlse.vector_concat_vv($size1*$(type.len), $size2*$(type.len))</make>
+    <param>
+		<name>Output Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>len:8</opt>
+			<opt>vec_type:complex_vector</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>len:4</opt>
+			<opt>vec_type:real_vector</opt>
+		</option>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>len:4</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>len:2</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>len:1</opt>
+			<opt>vec_type:int_vector</opt>
+        </option>
+    </param>
+    <param>
+        <name>Length of first Vector</name>
+        <key>size1</key>
+        <value>2</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Length of second Vector</name>
+        <key>size2</key>
+        <value>2</value>
+        <type>int</type>
+    </param>
+    <sink>
+        <name>in1</name>
+        <type>$type</type>
+        <vlen>$size1</vlen>
+    </sink>
+    <sink>
+        <name>in2</name>
+        <type>$type</type>
+        <vlen>$size2</vlen>
+    </sink>
+    <source>
+        <name>out</name>
+        <type>$type</type>
+        <vlen>$(size1)+$(size2)</vlen>
+    </source>
+</block>
+

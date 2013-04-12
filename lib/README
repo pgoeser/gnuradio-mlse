@@ -1,0 +1,9 @@
+This is a preliminary version of a MLSE-Equalizer for reception of Gaussian Minimum Shift Keying (GMSK)-Signals (like GSM).
+
+Assumptions:
+- The Finite State Machine (FSM) is a shift register of Symbols. (Symbol alphabet can be any power-of-two size)
+- The output of the channel model (which gets fed the symbols) is two-dimensional (for example complex numbers in the I/Q-Space)
+- The metric is the real part of the product between estimated and received signal minus a correction term
+
+
+

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<block>
+    <name>Vector Slice</name>
+    <key>mlse_vector_slice_vv</key>
+        <category>Stream Conversions</category>
+    <import>import mlse</import>
+    <make>mlse.vector_slice_vv($type.size, $input_length, $output_offset, $output_length, $reverse)</make>
+    <param>
+		<name>Output Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>size:8</opt>
+			<opt>vec_type:complex_vector</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>size:4</opt>
+			<opt>vec_type:real_vector</opt>
+		</option>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>size:4</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>size:2</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>size:1</opt>
+			<opt>vec_type:int_vector</opt>
+        </option>
+    </param>
+    <param>
+        <name>Input Length</name>
+        <key>input_length</key>
+        <value>3</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Output Offset</name>
+        <key>output_offset</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Output Length</name>
+        <key>output_length</key>
+        <value>2</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Reverse</name>
+        <key>reverse</key>
+        <value>False</value>
+        <type>bool</type>
+    </param>
+    <sink>
+        <name>in</name>
+        <type>$type</type>
+        <vlen>$input_length</vlen>
+    </sink>
+    <source>
+        <name>out</name>
+        <type>$type</type>
+        <vlen>$output_length</vlen>
+    </source>
+</block>
+

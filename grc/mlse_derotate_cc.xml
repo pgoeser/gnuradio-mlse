@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<block>
+    <name>Derotation</name>
+    <key>mlse_derotate_cc</key>
+        <category>Modulators</category>
+    <import>import mlse</import>
+    <make>mlse.derotate_cc($vlen, $samples_per_rot, $offset)</make>
+    <param>
+        <name>Vector length</name>
+        <key>vlen</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Samples per rotation</name>
+        <key>samples_per_rot</key>
+        <value>4</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Offset</name>
+        <key>offset</key>
+        <value>0</value>
+        <type>int</type>
+    </param>
+    <sink>
+        <name>in</name>
+        <type>complex</type>
+        <vlen>$vlen</vlen>
+    </sink>
+    <source>
+        <name>out</name>
+        <type>complex</type>
+        <vlen>$vlen</vlen>
+    </source>
+</block>
+

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<block>
+    <name>Random Numbers</name>
+    <key>mlse_randint_bxv</key>
+        <category>Sources</category>
+    <import>import mlse</import>
+    <make>mlse.randint_$(type.fcn)($range)</make>
+    <param>
+		<name>Output Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>fcn:i</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>fcn:s</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>fcn:b</opt>
+			<opt>vec_type:int_vector</opt>
+        </option>
+    </param>
+    <param>
+        <name>Range</name>
+        <key>range</key>
+        <value>2</value>
+        <type>int</type>
+    </param>
+    <source>
+        <name>out</name>
+        <type>$type</type>
+        <vlen>1</vlen>
+    </source>
+</block>
+

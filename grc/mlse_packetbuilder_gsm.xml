@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<block>
+    <name>GSM Packetbuilder</name>
+    <key>mlse_packetbuilder_gsm</key>
+        <category>Stream Conversions</category>
+    <import>import mlse_swig as mlse</import>
+    <import>import mlse</import>
+    <make>mlse.packetbuilder_midamble_vbb(mlse.make_packet_config_gsm())</make>
+    <sink>
+        <name>data</name>
+        <type>byte</type>
+        <vlen>116</vlen>
+    </sink>
+    <sink>
+        <name>tsc index</name>
+        <type>byte</type>
+    </sink>
+    <source>
+        <name>packets</name>
+        <type>byte</type>
+        <vlen>148</vlen>
+    </source>
+</block>
+

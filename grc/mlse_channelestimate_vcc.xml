@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<block>
+    <name>Channel Estimate</name>
+    <key>mlse_channelestimate_vcc</key>
+        <category>Equalization</category>
+    <import>import mlse</import>
+    <make>mlse.channelestimate_vcc($training_sequence_len, $channel_len)</make>
+    <param>
+        <name>Training Sequence length</name>
+        <key>training_sequence_len</key>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Channel length</name>
+        <key>channel_len</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <sink>
+        <name>tsc_mod</name>
+        <type>complex</type>
+        <vlen>$training_sequence_len</vlen>
+    </sink>
+    <sink>
+        <name>samples</name>
+        <type>complex</type>
+        <vlen>$training_sequence_len</vlen>
+    </sink>
+    <source>
+        <name>channel</name>
+        <type>complex</type>
+        <vlen>$channel_len</vlen>
+    </source>
+</block>
+

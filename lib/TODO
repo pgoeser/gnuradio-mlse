@@ -1,0 +1,81 @@
+Module-status:
+In progress:
+    plots in testapp:
+        presentation
+        new plot types
+Wishlist:
+    viterbi speed optimisation:
+        decode_init
+        error-term cachen. (ist das schneller?)
+        Operationen herausoptimieren
+Unit Testing:
+	viterbi_impl
+    channel_model
+	equalizer_midamble -> toplevel test
+    viterbi_vcb -> no test for time beeing
+Refactor:
+    make packet_config a lot neater
+Unsorted:
+	packet_config: add more throw for python, cleanup
+	packet_config: perhaps rename 'piece' to 'segment'
+    remove shared_pointer from viterbi_vcb to viterbi_impl
+Far future:
+	?? laurent-modulator/stuff/thing
+
+Bugs:
+	lib/Makefile.gen has broken build-depends, needs to be touched and/or removed manually
+
+
+Other_tasks:
+	take care of vim python indentation settings
+	learn why we need throw declarations and add them everywhere they're missing
+    grc: check if we have everything
+
+
+Code-Review Plan:
+    - Module etwas besser dokumentieren, auch Überblick
+    - renames in betracht ziehen. packet_config? channel_model?
+    - look for TODOs
+    - debug-output vom equalizer entfernen
+    - check channel length
+Code-Review Wishlist:
+    - clean testapp
+    - make testapp an app
+    - Makefile.gen fixen
+    
+
+Optimierungsidee:
+    - Trellis voralloziieren, Symbolposition mitführen um darauf zuzugreifen
+    - Aufrollen der beiden inneren schleifen. Eventuell versionen des algos mit festem Symbolalphabet kompilieren. Damit tut vllt sogar SSE-Parallelismus
+    - next-supersym wird z Zt zweimal berechnet, einmal in metrik, einmal im loop. Da geht was.
+
+
+Fragen: 
+    macht pow korrektes rounding?
+
+
+== LATER ==
+- move modulation_psk from channel_model to somewhere else
+
+=== CODE INTEGRATION SUGGESTIONS ===
+This module includes quite a bit of code that can be useful in other 
+gnuradio-projects. However due to time constraints, a few shortcuts were taken
+and a few blocks weren't implemented as generically as they should. This is a
+list of suggested improvements to reuse those modules
+
+- channelestimate: could be made into a vector-convolution block or something alike. Also interesting: spacing of the training sequence to estimate channels in sample-rate instead of symbol-rate
+- vector_slice is a bit complex, one could for instance move reverse into an extra block, or differenciate into head and tail. Especially the ordering of the constructor arguments is error-prone. Automatic input/output size discovery would also be nice.
+- some blocks (notably mlse_lut_XXv) throw exceptions in constructors or data-update-functions when fed with inconsistent parameters. This works fine in C++, but when the constructor gets called from python the program aborts rather suddenly without relaying more than the exception type. This could be improved, mainly by adding throw() declarations to the methods
+- a concat-variant with more than two inputs would be nice
+
+
+=== CODE CLEANUP ===
+- proper throw() everywhere for swig
+- make sure asserts trigger not only in debug-mode
+- sprinkle references and const
+
+=== Bugs in Fremdcode ===
+- cpm: drifted  leicht
+- gr_channel_model_cc.cc: zeile 62: involuntary? cast from double to long
+
+

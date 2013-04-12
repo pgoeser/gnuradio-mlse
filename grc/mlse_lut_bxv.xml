@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<block>
+    <name>Lookup Table</name>
+    <key>mlse_lut_bxv</key>
+        <category>Stream Conversions</category>
+    <import>import mlse</import>
+    <make>mlse.lut_b$(type.fcn)v($data)</make>
+    <param>
+		<name>Output Type</name>
+		<key>type</key>
+		<type>enum</type>
+		<option>
+			<name>Complex</name>
+			<key>complex</key>
+			<opt>fcn:c</opt>
+			<opt>vec_type:complex_vector</opt>
+		</option>
+		<option>
+			<name>Float</name>
+			<key>float</key>
+			<opt>fcn:f</opt>
+			<opt>vec_type:real_vector</opt>
+		</option>
+		<option>
+			<name>Int</name>
+			<key>int</key>
+			<opt>fcn:i</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Short</name>
+			<key>short</key>
+			<opt>fcn:s</opt>
+			<opt>vec_type:int_vector</opt>
+		</option>
+		<option>
+			<name>Byte</name>
+			<key>byte</key>
+			<opt>fcn:b</opt>
+			<opt>vec_type:int_vector</opt>
+        </option>
+    </param>
+    <param>
+        <name>Table</name>
+        <key>data</key>
+        <value>[[0,0],[0,0]]</value>
+        <type>raw</type>
+    </param>
+    <sink>
+        <name>index</name>
+        <type>byte</type>
+    </sink>
+    <source>
+        <name>out</name>
+        <type>$type</type>
+        <vlen>len($(data)[0])</vlen>
+    </source>
+</block>
+

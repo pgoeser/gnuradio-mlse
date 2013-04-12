@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<block>
+    <name>Viterbi Equalizer</name>
+    <key>mlse_viterbi_vcb</key>
+        <category>Equalization</category>
+    <import>import mlse</import>
+    <make>mlse.viterbi_vcb($data_length, $channel_length, $tailsymbols, $modulation_table)</make>
+    <param>
+        <name>Data length</name>
+        <key>data_length</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Channel length</name>
+        <key>channel_length</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Tailsymbol count</name>
+        <key>tailsymbols</key>
+        <value>1</value>
+        <type>int</type>
+    </param>
+    <param>
+        <name>Constellation</name>
+        <key>modulation_table</key>
+        <value>1,-1</value>
+        <type>complex_vector</type>
+    </param>
+    <sink>
+        <name>channel</name>
+        <type>complex</type>
+        <vlen>$channel_length</vlen>
+    </sink>
+    <sink>
+        <name>samples</name>
+        <type>complex</type>
+        <vlen>($(channel_length)+$(data_length)+$(tailsymbols)-1)</vlen>
+    </sink>
+    <sink>
+        <name>prev bits</name>
+        <type>byte</type>
+        <vlen>$(channel_length)-1</vlen>
+    </sink>
+    <source>
+        <name>data</name>
+        <type>byte</type>
+        <vlen>$data_length</vlen>
+    </source>
+</block>
+

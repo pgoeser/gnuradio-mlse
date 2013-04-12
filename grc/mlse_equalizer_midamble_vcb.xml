@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<block>
+    <name>MLSE GSM Equalizer</name>
+    <key>mlse_equalizer_midamble_vcb</key>
+        <category>Equalization</category>
+    <import>import mlse_swig as mlse</import>
+    <import>import mlse</import>
+    <make>mlse.equalizer_midamble_vcb(mlse.make_packet_config_gsm())</make>
+    <sink>
+        <name>samples</name>
+        <type>complex</type>
+        <vlen>148</vlen>
+    </sink>
+    <sink>
+        <name>tsc index</name>
+        <type>byte</type>
+    </sink>
+    <source>
+        <name>data</name>
+        <type>byte</type>
+        <vlen>116</vlen>
+    </source>
+    <source>
+        <name>channel estimate</name>
+        <type>complex</type>
+        <vlen>6</vlen>
+    </source>
+</block>
+

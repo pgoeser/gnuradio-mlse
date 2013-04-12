@@ -1,0 +1,80 @@
+#
+# Copyright 2005,2006,2009 Free Software Foundation, Inc.
+# 
+# This file is part of GNU Radio
+# 
+# GNU Radio is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+# 
+# GNU Radio is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with GNU Radio; see the file COPYING.  If not, write to
+# the Free Software Foundation, Inc., 51 Franklin Street,
+# Boston, MA 02110-1301, USA.
+# 
+
+This directory (and the resulting tarball) contains a build tree for
+an MLSE-deconvolution-block for gnuradio, and associated components
+and helpers.
+
+This package requires that gnuradio-core is already installed.  It
+also depends on some GNU Radio prerequisites, such as Boost, cppunit
+and SWIG. 
+
+To build the examples from the tarball use the normal recipe:
+
+  $ ./configure
+  $ make
+  $ make check
+
+If you're building from git, you'll need to use this sequence, since
+git doesn't contain configure or the generated Makefiles.
+
+  $ ./bootstrap
+  $ ./configure
+  $ make
+  $ make check
+
+
+There is a bug in the build-system with lib/Makefile.gen. When something
+does not work, you need to either rm, touch or make that file, then it should work. Furthermore, it might still require autoconf < 2.68.
+
+The code is still in need of cleanup. The test-app can be run with python/run_testapp, 
+which takes a parameter on which test to run, see python/testapp.py
+
+
+This package includes the following blocks (all written in C++):
+
+Deconvolution:
+    mlse_equalizer_midamble_vcb wraps everything to provide deconvolution
+    mlse_viterbi_vcb            the viterbi algorithm doing the deconvolution
+    mlse_channelestimate_vcc    channel-estimator necessary for it
+Necessary building blocks for deconvolution:
+    mlse_vector_slice_vv        slices a subset out of a vector
+    mlse_vector_concat_vv       appends two vectors
+    mlse_lut_bXv                implements a lookup table, which outputs a vector in 
+                                response to an index
+
+Useful blocks, used for testing or building apps using MLSE:
+    mlse_randint_X              random int source, using a mersenne twister
+                                (can be approximated with noise and type conversion)
+    mlse_packetbuilder_midamble_vbb  build matching bursts that can be received with 
+                                     mlse_equalizer_midamble_vcb
+    mlse_derotate_cc            derotate a signal like gsm
+
+non-block classes:
+    packet_config               contains the configuration parameters of a burst system,
+                                necessary for packetbuilder and equalizer_midamble
+    packet_config_gsm           packet_config for gsm
+    mlse_viterbi_impl           implementation for mlse_viterbi_vcb
+    channel_model               internal class of mlse_viterbi_impl
+    
+
+The package also includes a small testapp that can produce biterror-rate-plots, and
+a few python-blocks for it.

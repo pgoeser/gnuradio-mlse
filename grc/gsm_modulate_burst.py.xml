@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='ASCII'?>
+<block>
+  <name>GSM modulate burst</name>
+  <key>gsm_modulate_burst</key>
+  <category>Modulators</category>
+  <import>import gsm_modulate_burst</import>
+  <make>gsm_modulate_burst.gsm_modulate_burst($samples_per_symbol)</make>
+  <param>
+      <name>Samples per Symbol</name>
+      <key>samples_per_symbol</key>
+      <value>1</value>
+      <type>int</type>
+  </param>
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+    <vlen>116</vlen>
+  </sink>
+  <sink>
+    <name>tsc index</name>
+    <type>byte</type>
+    <vlen>1</vlen>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>complex</type>
+  </source>
+</block>

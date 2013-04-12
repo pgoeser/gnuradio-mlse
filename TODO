@@ -1,0 +1,20 @@
+
+This is a toplevel overview TODO-file. Please see lib/TODO for lots of details.
+
+code ripeness TODO:
+- thorough testing with non-GSM packets
+- refactoring in a few places where it's rough
+- testing of installation
+- more unit-tests
+- good documentation of usage and scientific background
+
+feature wishlist:
+- deconvolution with noise-autocorrelation-matrix for coloured noise
+- channel-estimate with sample-rate for better matched-filtering
+    (this needs coloured noise handling to be useful)
+- provide hints on what exactly to do around this module: how much syncronisation is needed, what input filtering is best, and so on.
+- perhaps switchable metric between euclidean and coloured-noise
+
+
+BUGS
+immernoch: braucht touch lib/Makefile.gen
